@@ -1,0 +1,37 @@
+{
+  "brand_aliases": [
+    "istanbul mediterranean",
+    "istanbul med",
+    "istanbul doner"
+  ],
+  "language_code": "en",
+  "top_competitors": 5,
+  "locations": [
+    {
+      "id": "strip",
+      "name": "Istanbul Mediterranean - Strip",
+      "coordinate": "36.1147,-115.1728",
+      "keywords": [
+        "halal food las vegas strip",
+        "doner kebab las vegas",
+        "mediterranean restaurant las vegas strip",
+        "shawarma near me",
+        "turkish food las vegas",
+        "gyro las vegas strip"
+      ]
+    },
+    {
+      "id": "fremont",
+      "name": "Istanbul Mediterranean - Fremont",
+      "coordinate": "36.1699,-115.1428",
+      "keywords": [
+        "halal food fremont street",
+        "doner near me",
+        "mediterranean restaurant downtown las vegas",
+        "shawarma fremont street",
+        "late night food fremont street",
+        "turkish food downtown las vegas"
+      ]
+    }
+  ]
+}
