@@ -80,11 +80,16 @@ def is_brand(title, aliases):
 
 
 def parse_items(items, aliases, top_n):
-    """Pull our rank + top competitors out of the maps items."""
+    """Pull our local-pack listing + top competitors out of the maps items.
+
+    The maps live/advanced endpoint only returns the local pack, so
+    organic_rank is always null here (left in the schema for when an
+    organic SERP query is added).
+    """
     listings = [it for it in items if it.get("type") == "maps_search"]
     listings.sort(key=lambda it: it.get("rank_absolute") or 999)
 
-    our_rank = None
+    us = None
     competitors = []
     for it in listings:
         rating = it.get("rating") or {}
@@ -92,13 +97,13 @@ def parse_items(items, aliases, top_n):
             "name": it.get("title"),
             "rank": it.get("rank_absolute"),
             "rating": rating.get("value"),
-            "reviews": rating.get("votes_count"),
+            "review_count": rating.get("votes_count"),
         }
-        if is_brand(it.get("title"), aliases) and our_rank is None:
-            our_rank = it.get("rank_absolute")
+        if is_brand(it.get("title"), aliases) and us is None:
+            us = entry
         elif len(competitors) < top_n:
             competitors.append(entry)
-    return our_rank, competitors
+    return us, competitors
 
 
 def build_snapshot(cfg):
@@ -113,13 +118,23 @@ def build_snapshot(cfg):
         for kw in loc["keywords"]:
             try:
                 items = query_maps(kw, loc["coordinate"], lang)
-                our_rank, comps = parse_items(items, aliases, top_n)
+                us, comps = parse_items(items, aliases, top_n)
                 loc_block["keywords"][kw] = {
-                    "our_rank": our_rank,
+                    "local_pack_rank": us["rank"] if us else None,
+                    "organic_rank": None,
+                    "rating": us["rating"] if us else None,
+                    "review_count": us["review_count"] if us else None,
                     "competitors": comps,
                 }
             except (urllib.error.URLError, RuntimeError, ValueError) as e:
-                loc_block["keywords"][kw] = {"our_rank": None, "competitors": [], "error": str(e)}
+                loc_block["keywords"][kw] = {
+                    "local_pack_rank": None,
+                    "organic_rank": None,
+                    "rating": None,
+                    "review_count": None,
+                    "competitors": [],
+                    "error": str(e),
+                }
                 snapshot["errors"].append(f"{loc['id']} / {kw}: {e}")
         snapshot["locations"][loc["id"]] = loc_block
     return snapshot
@@ -135,23 +150,78 @@ def previous_snapshot(exclude_date):
 
 
 def compute_delta(curr, prev):
-    delta = {"date": curr["date"], "baseline": prev is None, "changes": []}
+    delta = {
+        "date": curr["date"],
+        "baseline": prev is None,
+        "rank_changes": [],
+        "rating_changes": [],
+        "competitors_entered": [],
+        "competitors_dropped": [],
+    }
     if prev is None:
         return delta
+
     for loc_id, loc in curr["locations"].items():
         prev_loc = (prev.get("locations") or {}).get(loc_id, {})
         prev_kw = prev_loc.get("keywords", {})
         for kw, data in loc["keywords"].items():
-            now = data.get("our_rank")
-            before = (prev_kw.get(kw) or {}).get("our_rank")
-            if now != before:
-                delta["changes"].append({
+            before_data = prev_kw.get(kw) or {}
+
+            now_rank = data.get("local_pack_rank")
+            before_rank = before_data.get("local_pack_rank")
+            if now_rank != before_rank:
+                delta["rank_changes"].append({
                     "location": loc_id,
                     "keyword": kw,
-                    "from": before,
-                    "to": now,
-                    "direction": _direction(before, now),
+                    "from": before_rank,
+                    "to": now_rank,
+                    "direction": _direction(before_rank, now_rank),
                 })
+
+            now_rating = data.get("rating")
+            before_rating = before_data.get("rating")
+            now_reviews = data.get("review_count")
+            before_reviews = before_data.get("review_count")
+            if before_rank is not None and (now_rating != before_rating or now_reviews != before_reviews):
+                delta["rating_changes"].append({
+                    "location": loc_id,
+                    "keyword": kw,
+                    "name": curr["locations"][loc_id]["name"],
+                    "rating_from": before_rating,
+                    "rating_to": now_rating,
+                    "review_count_from": before_reviews,
+                    "review_count_to": now_reviews,
+                })
+
+            now_comps = {c["name"]: c for c in data.get("competitors", []) if c.get("name")}
+            before_comps = {c["name"]: c for c in before_data.get("competitors", []) if c.get("name")}
+
+            for name in now_comps.keys() - before_comps.keys():
+                delta["competitors_entered"].append({
+                    "location": loc_id,
+                    "keyword": kw,
+                    "name": name,
+                    "rank": now_comps[name].get("rank"),
+                })
+            for name in before_comps.keys() - now_comps.keys():
+                delta["competitors_dropped"].append({
+                    "location": loc_id,
+                    "keyword": kw,
+                    "name": name,
+                    "rank": before_comps[name].get("rank"),
+                })
+            for name in now_comps.keys() & before_comps.keys():
+                now_c, before_c = now_comps[name], before_comps[name]
+                if now_c.get("rating") != before_c.get("rating") or now_c.get("review_count") != before_c.get("review_count"):
+                    delta["rating_changes"].append({
+                        "location": loc_id,
+                        "keyword": kw,
+                        "name": name,
+                        "rating_from": before_c.get("rating"),
+                        "rating_to": now_c.get("rating"),
+                        "review_count_from": before_c.get("review_count"),
+                        "review_count_to": now_c.get("review_count"),
+                    })
     return delta
 
 
@@ -181,9 +251,15 @@ def main():
     with open(DELTA_PATH, "w", encoding="utf-8") as f:
         json.dump(delta, f, indent=2, ensure_ascii=False)
 
+    total_changes = (
+        len(delta["rank_changes"])
+        + len(delta["rating_changes"])
+        + len(delta["competitors_entered"])
+        + len(delta["competitors_dropped"])
+    )
     print(f"Wrote {snap_path}")
     print(f"Wrote {DELTA_PATH}")
-    print(f"Errors: {len(snapshot['errors'])}, Changes: {len(delta['changes'])}")
+    print(f"Errors: {len(snapshot['errors'])}, Baseline: {delta['baseline']}, Changes: {total_changes}")
 
 
 if __name__ == "__main__":
