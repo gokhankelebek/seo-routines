@@ -87,17 +87,20 @@ def parse_items(items, aliases, top_n):
     our_rank = None
     competitors = []
     for it in listings:
-        rating = it.get("rating") or {}
-        entry = {
-            "name": it.get("title"),
-            "rank": it.get("rank_absolute"),
-            "rating": rating.get("value"),
-            "reviews": rating.get("votes_count"),
-        }
-        if is_brand(it.get("title"), aliases) and our_rank is None:
-            our_rank = it.get("rank_absolute")
-        elif len(competitors) < top_n:
-            competitors.append(entry)
+        if is_brand(it.get("title"), aliases):
+            # Own brand, possibly a duplicate GBP listing under a different
+            # name/owner — never counted as a competitor.
+            if our_rank is None:
+                our_rank = it.get("rank_absolute")
+            continue
+        if len(competitors) < top_n:
+            rating = it.get("rating") or {}
+            competitors.append({
+                "name": it.get("title"),
+                "rank": it.get("rank_absolute"),
+                "rating": rating.get("value"),
+                "reviews": rating.get("votes_count"),
+            })
     return our_rank, competitors
 
 
@@ -135,7 +138,12 @@ def previous_snapshot(exclude_date):
 
 
 def compute_delta(curr, prev):
-    delta = {"date": curr["date"], "baseline": prev is None, "changes": []}
+    delta = {
+        "date": curr["date"],
+        "baseline": prev is None,
+        "changes": [],
+        "competitor_changes": [],
+    }
     if prev is None:
         return delta
     for loc_id, loc in curr["locations"].items():
@@ -143,7 +151,8 @@ def compute_delta(curr, prev):
         prev_kw = prev_loc.get("keywords", {})
         for kw, data in loc["keywords"].items():
             now = data.get("our_rank")
-            before = (prev_kw.get(kw) or {}).get("our_rank")
+            prev_data = prev_kw.get(kw) or {}
+            before = prev_data.get("our_rank")
             if now != before:
                 delta["changes"].append({
                     "location": loc_id,
@@ -152,7 +161,57 @@ def compute_delta(curr, prev):
                     "to": now,
                     "direction": _direction(before, now),
                 })
+            delta["competitor_changes"].extend(
+                _competitor_delta(loc_id, kw, data.get("competitors") or [], prev_data.get("competitors") or [])
+            )
     return delta
+
+
+def _competitor_delta(loc_id, kw, curr_comps, prev_comps):
+    changes = []
+    curr_by_name = {c.get("name"): c for c in curr_comps if c.get("name")}
+    prev_by_name = {c.get("name"): c for c in prev_comps if c.get("name")}
+
+    for name, c in curr_by_name.items():
+        if name not in prev_by_name:
+            changes.append({
+                "location": loc_id,
+                "keyword": kw,
+                "competitor": name,
+                "type": "entered",
+                "rank": c.get("rank"),
+                "rating": c.get("rating"),
+                "reviews": c.get("reviews"),
+            })
+            continue
+        p = prev_by_name[name]
+        rank_changed = c.get("rank") != p.get("rank")
+        rating_changed = c.get("rating") != p.get("rating")
+        reviews_changed = c.get("reviews") != p.get("reviews")
+        if rank_changed or rating_changed or reviews_changed:
+            changes.append({
+                "location": loc_id,
+                "keyword": kw,
+                "competitor": name,
+                "type": "updated",
+                "rank": {"from": p.get("rank"), "to": c.get("rank")} if rank_changed else None,
+                "rating": {"from": p.get("rating"), "to": c.get("rating")} if rating_changed else None,
+                "reviews": {"from": p.get("reviews"), "to": c.get("reviews")} if reviews_changed else None,
+            })
+
+    for name, p in prev_by_name.items():
+        if name not in curr_by_name:
+            changes.append({
+                "location": loc_id,
+                "keyword": kw,
+                "competitor": name,
+                "type": "dropped",
+                "rank": p.get("rank"),
+                "rating": p.get("rating"),
+                "reviews": p.get("reviews"),
+            })
+
+    return changes
 
 
 def _direction(before, now):
