@@ -1,0 +1,210 @@
+{
+  "date": "2026-07-20",
+  "locations": {
+    "strip": {
+      "name": "Istanbul Mediterranean - Strip",
+      "keywords": {
+        "halal food las vegas strip": {
+          "our_rank": 2,
+          "competitors": [
+            {
+              "name": "Dave's Hot Chicken",
+              "rank": 1,
+              "rating": 4.4,
+              "reviews": 919
+            }
+          ]
+        },
+        "doner kebab las vegas": {
+          "our_rank": 1,
+          "competitors": []
+        },
+        "mediterranean restaurant las vegas strip": {
+          "our_rank": 1,
+          "competitors": [
+            {
+              "name": "Battista's Hole in the Wall",
+              "rank": 2,
+              "rating": 4.5,
+              "reviews": 8264
+            },
+            {
+              "name": "Eiffel Tower Restaurant",
+              "rank": 3,
+              "rating": 4.6,
+              "reviews": 6425
+            },
+            {
+              "name": "Ramen-Ya (Katana-ya)",
+              "rank": 4,
+              "rating": 4.3,
+              "reviews": 2367
+            },
+            {
+              "name": "Alexxa's",
+              "rank": 5,
+              "rating": 4.5,
+              "reviews": 10698
+            },
+            {
+              "name": "Le Cirque",
+              "rank": 6,
+              "rating": 4.6,
+              "reviews": 745
+            }
+          ]
+        },
+        "shawarma near me": {
+          "our_rank": 1,
+          "competitors": []
+        },
+        "turkish food las vegas": {
+          "our_rank": 1,
+          "competitors": []
+        },
+        "gyro las vegas strip": {
+          "our_rank": 1,
+          "competitors": []
+        }
+      }
+    },
+    "fremont": {
+      "name": "Istanbul Mediterranean - Fremont",
+      "keywords": {
+        "halal food fremont street": {
+          "our_rank": 1,
+          "competitors": [
+            {
+              "name": "Kaplan Capital LLC DBA Istanbul Mediterranean Restaurant-Fremont",
+              "rank": 2,
+              "rating": 3.7,
+              "reviews": 3
+            },
+            {
+              "name": "Andiamo Steakhouse",
+              "rank": 3,
+              "rating": 4.6,
+              "reviews": 2054
+            },
+            {
+              "name": "Sultan’s Grill Las Vegas",
+              "rank": 4,
+              "rating": 4.2,
+              "reviews": 115
+            },
+            {
+              "name": "Truk-N-Yaki",
+              "rank": 5,
+              "rating": 4.7,
+              "reviews": 20
+            }
+          ]
+        },
+        "doner near me": {
+          "our_rank": 1,
+          "competitors": [
+            {
+              "name": "Lanai Express at Fremont Casino",
+              "rank": 2,
+              "rating": 2.9,
+              "reviews": 265
+            },
+            {
+              "name": "Sultan’s Grill Las Vegas",
+              "rank": 3,
+              "rating": 4.2,
+              "reviews": 115
+            }
+          ]
+        },
+        "mediterranean restaurant downtown las vegas": {
+          "our_rank": 1,
+          "competitors": [
+            {
+              "name": "Kaplan Capital LLC DBA Istanbul Mediterranean Restaurant-Fremont",
+              "rank": 2,
+              "rating": 3.7,
+              "reviews": 3
+            },
+            {
+              "name": "Sultan’s Grill Las Vegas",
+              "rank": 3,
+              "rating": 4.2,
+              "reviews": 115
+            }
+          ]
+        },
+        "shawarma fremont street": {
+          "our_rank": 1,
+          "competitors": [
+            {
+              "name": "Kaplan Capital LLC DBA Istanbul Mediterranean Restaurant-Fremont",
+              "rank": 2,
+              "rating": 3.7,
+              "reviews": 3
+            },
+            {
+              "name": "Sultan’s Grill Las Vegas",
+              "rank": 3,
+              "rating": 4.2,
+              "reviews": 115
+            }
+          ]
+        },
+        "late night food fremont street": {
+          "our_rank": 38,
+          "competitors": [
+            {
+              "name": "Dirt Dog - Fremont",
+              "rank": 1,
+              "rating": 4.9,
+              "reviews": 3374
+            },
+            {
+              "name": "Hammered Harry's Las Vegas",
+              "rank": 2,
+              "rating": 4.7,
+              "reviews": 1756
+            },
+            {
+              "name": "Park On Fremont",
+              "rank": 3,
+              "rating": 4.4,
+              "reviews": 2290
+            },
+            {
+              "name": "8 East",
+              "rank": 4,
+              "rating": 4.7,
+              "reviews": 1039
+            },
+            {
+              "name": "Bangkok Street Thai Street Kitchen",
+              "rank": 5,
+              "rating": 4.7,
+              "reviews": 1007
+            }
+          ]
+        },
+        "turkish food downtown las vegas": {
+          "our_rank": 1,
+          "competitors": [
+            {
+              "name": "Kaplan Capital LLC DBA Istanbul Mediterranean Restaurant-Fremont",
+              "rank": 2,
+              "rating": 3.7,
+              "reviews": 3
+            },
+            {
+              "name": "Sultan’s Grill Las Vegas",
+              "rank": 3,
+              "rating": 4.2,
+              "reviews": 115
+            }
+          ]
+        }
+      }
+    }
+  },
+  "errors": []
+}
