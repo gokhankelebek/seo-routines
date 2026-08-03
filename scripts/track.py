@@ -80,11 +80,12 @@ def is_brand(title, aliases):
 
 
 def parse_items(items, aliases, top_n):
-    """Pull our rank + top competitors out of the maps items."""
+    """Pull our local pack rank, organic rank, and top competitors out of the maps items."""
     listings = [it for it in items if it.get("type") == "maps_search"]
     listings.sort(key=lambda it: it.get("rank_absolute") or 999)
 
     our_rank = None
+    organic_rank = None
     competitors = []
     for it in listings:
         rating = it.get("rating") or {}
@@ -92,13 +93,21 @@ def parse_items(items, aliases, top_n):
             "name": it.get("title"),
             "rank": it.get("rank_absolute"),
             "rating": rating.get("value"),
-            "reviews": rating.get("votes_count"),
+            "review_count": rating.get("votes_count"),
         }
         if is_brand(it.get("title"), aliases) and our_rank is None:
             our_rank = it.get("rank_absolute")
         elif len(competitors) < top_n:
             competitors.append(entry)
-    return our_rank, competitors
+
+    # The maps live/advanced endpoint only returns local-pack listings, not the
+    # organic web SERP, so organic rank is not available from this call.
+    for it in items:
+        if it.get("type") == "organic" and is_brand(it.get("title"), aliases):
+            organic_rank = it.get("rank_absolute")
+            break
+
+    return our_rank, organic_rank, competitors
 
 
 def build_snapshot(cfg):
@@ -106,20 +115,31 @@ def build_snapshot(cfg):
     top_n = cfg.get("top_competitors", 5)
     lang = cfg.get("language_code", "en")
 
-    snapshot = {"date": dt.date.today().isoformat(), "locations": {}, "errors": []}
+    snapshot = {
+        "date": dt.date.today().isoformat(),
+        "timestamp": dt.datetime.now(dt.timezone.utc).isoformat(),
+        "locations": {},
+        "errors": [],
+    }
 
     for loc in cfg["locations"]:
         loc_block = {"name": loc["name"], "keywords": {}}
         for kw in loc["keywords"]:
             try:
                 items = query_maps(kw, loc["coordinate"], lang)
-                our_rank, comps = parse_items(items, aliases, top_n)
+                our_rank, organic_rank, comps = parse_items(items, aliases, top_n)
                 loc_block["keywords"][kw] = {
                     "our_rank": our_rank,
+                    "organic_rank": organic_rank,
                     "competitors": comps,
                 }
             except (urllib.error.URLError, RuntimeError, ValueError) as e:
-                loc_block["keywords"][kw] = {"our_rank": None, "competitors": [], "error": str(e)}
+                loc_block["keywords"][kw] = {
+                    "our_rank": None,
+                    "organic_rank": None,
+                    "competitors": [],
+                    "error": str(e),
+                }
                 snapshot["errors"].append(f"{loc['id']} / {kw}: {e}")
         snapshot["locations"][loc["id"]] = loc_block
     return snapshot
@@ -135,15 +155,16 @@ def previous_snapshot(exclude_date):
 
 
 def compute_delta(curr, prev):
-    delta = {"date": curr["date"], "baseline": prev is None, "changes": []}
+    delta = {"date": curr["date"], "baseline": prev is None, "changes": [], "competitor_changes": []}
     if prev is None:
         return delta
     for loc_id, loc in curr["locations"].items():
         prev_loc = (prev.get("locations") or {}).get(loc_id, {})
         prev_kw = prev_loc.get("keywords", {})
         for kw, data in loc["keywords"].items():
+            before_data = prev_kw.get(kw) or {}
             now = data.get("our_rank")
-            before = (prev_kw.get(kw) or {}).get("our_rank")
+            before = before_data.get("our_rank")
             if now != before:
                 delta["changes"].append({
                     "location": loc_id,
@@ -152,7 +173,47 @@ def compute_delta(curr, prev):
                     "to": now,
                     "direction": _direction(before, now),
                 })
+
+            comp_delta = _competitor_delta(before_data.get("competitors", []), data.get("competitors", []))
+            if comp_delta:
+                delta["competitor_changes"].append({
+                    "location": loc_id,
+                    "keyword": kw,
+                    **comp_delta,
+                })
     return delta
+
+
+def _competitor_delta(prev_comps, curr_comps):
+    """Diff two top-N competitor lists by name: entries, drops, rank/rating/review moves."""
+    prev_by_name = {c["name"]: c for c in prev_comps if c.get("name")}
+    curr_by_name = {c["name"]: c for c in curr_comps if c.get("name")}
+
+    entered = sorted(name for name in curr_by_name if name not in prev_by_name)
+    dropped = sorted(name for name in prev_by_name if name not in curr_by_name)
+
+    changed = []
+    for name, curr_c in curr_by_name.items():
+        prev_c = prev_by_name.get(name)
+        if not prev_c:
+            continue
+        rank_from, rank_to = prev_c.get("rank"), curr_c.get("rank")
+        rating_from, rating_to = prev_c.get("rating"), curr_c.get("rating")
+        reviews_from, reviews_to = prev_c.get("review_count"), curr_c.get("review_count")
+        if (rank_from, rating_from, reviews_from) != (rank_to, rating_to, reviews_to):
+            changed.append({
+                "name": name,
+                "rank_from": rank_from,
+                "rank_to": rank_to,
+                "rating_from": rating_from,
+                "rating_to": rating_to,
+                "review_count_from": reviews_from,
+                "review_count_to": reviews_to,
+            })
+
+    if not entered and not dropped and not changed:
+        return None
+    return {"entered": entered, "dropped": dropped, "changed": changed}
 
 
 def _direction(before, now):
