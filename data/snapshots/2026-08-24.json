@@ -1,0 +1,203 @@
+{
+  "date": "2026-08-24",
+  "locations": {
+    "strip": {
+      "name": "Istanbul Mediterranean - Strip",
+      "keywords": {
+        "halal food las vegas strip": {
+          "our_rank": 2,
+          "competitors": [
+            {
+              "name": "Dave's Hot Chicken",
+              "rank": 1,
+              "rating": 4.4,
+              "reviews": 934
+            }
+          ]
+        },
+        "doner kebab las vegas": {
+          "our_rank": 1,
+          "competitors": []
+        },
+        "mediterranean restaurant las vegas strip": {
+          "our_rank": 1,
+          "competitors": [
+            {
+              "name": "Eiffel Tower Restaurant",
+              "rank": 2,
+              "rating": 4.6,
+              "reviews": 6477
+            },
+            {
+              "name": "Battista's Hole in the Wall",
+              "rank": 3,
+              "rating": 4.5,
+              "reviews": 8389
+            },
+            {
+              "name": "Ramen-Ya (Katana-ya)",
+              "rank": 4,
+              "rating": 4.3,
+              "reviews": 2379
+            },
+            {
+              "name": "Alexxa's",
+              "rank": 5,
+              "rating": 4.5,
+              "reviews": 11092
+            },
+            {
+              "name": "Le Cirque",
+              "rank": 6,
+              "rating": 4.6,
+              "reviews": 760
+            }
+          ]
+        },
+        "shawarma near me": {
+          "our_rank": 1,
+          "competitors": []
+        },
+        "turkish food las vegas": {
+          "our_rank": 1,
+          "competitors": []
+        },
+        "gyro las vegas strip": {
+          "our_rank": 1,
+          "competitors": []
+        }
+      }
+    },
+    "fremont": {
+      "name": "Istanbul Mediterranean - Fremont",
+      "keywords": {
+        "halal food fremont street": {
+          "our_rank": 1,
+          "competitors": []
+        },
+        "doner near me": {
+          "our_rank": 1,
+          "competitors": [
+            {
+              "name": "Market Street Café",
+              "rank": 2,
+              "rating": 4.2,
+              "reviews": 1905
+            },
+            {
+              "name": "The Meltdown",
+              "rank": 3,
+              "rating": 2.4,
+              "reviews": 10
+            },
+            {
+              "name": "American Coney Island Las Vegas",
+              "rank": 4,
+              "rating": 3.9,
+              "reviews": 1070
+            },
+            {
+              "name": "Lanai Express at Fremont Casino",
+              "rank": 5,
+              "rating": 2.9,
+              "reviews": 270
+            },
+            {
+              "name": "Saginaw's Delicatessen",
+              "rank": 6,
+              "rating": 3.9,
+              "reviews": 714
+            }
+          ]
+        },
+        "mediterranean restaurant downtown las vegas": {
+          "our_rank": 1,
+          "competitors": [
+            {
+              "name": "Kaplan Capital LLC DBA Istanbul Mediterranean Restaurant-Fremont",
+              "rank": 2,
+              "rating": 4.2,
+              "reviews": 5
+            },
+            {
+              "name": "Sultan’s Grill Las Vegas",
+              "rank": 3,
+              "rating": 4.2,
+              "reviews": 113
+            }
+          ]
+        },
+        "shawarma fremont street": {
+          "our_rank": 1,
+          "competitors": [
+            {
+              "name": "Kaplan Capital LLC DBA Istanbul Mediterranean Restaurant-Fremont",
+              "rank": 2,
+              "rating": 4.2,
+              "reviews": 5
+            },
+            {
+              "name": "Sultan’s Grill Las Vegas",
+              "rank": 3,
+              "rating": 4.2,
+              "reviews": 113
+            }
+          ]
+        },
+        "late night food fremont street": {
+          "our_rank": 52,
+          "competitors": [
+            {
+              "name": "Fremont Food Hall",
+              "rank": 1,
+              "rating": 4.4,
+              "reviews": 34
+            },
+            {
+              "name": "LONGBAR",
+              "rank": 2,
+              "rating": 4.4,
+              "reviews": 31
+            },
+            {
+              "name": "American Coney Island Las Vegas",
+              "rank": 3,
+              "rating": 3.9,
+              "reviews": 1070
+            },
+            {
+              "name": "Vue Bar",
+              "rank": 4,
+              "rating": 4.4,
+              "reviews": 52
+            },
+            {
+              "name": "Street Tacos LV",
+              "rank": 5,
+              "rating": 4.4,
+              "reviews": 85
+            }
+          ]
+        },
+        "turkish food downtown las vegas": {
+          "our_rank": 2,
+          "competitors": [
+            {
+              "name": "Kaplan Capital LLC DBA Istanbul Mediterranean Restaurant-Fremont",
+              "rank": 3,
+              "rating": 4.2,
+              "reviews": 5
+            },
+            {
+              "name": "Sultan’s Grill Las Vegas",
+              "rank": 4,
+              "rating": 4.2,
+              "reviews": 113
+            }
+          ]
+        }
+      }
+    }
+  },
+  "errors": []
+}
