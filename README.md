@@ -34,6 +34,9 @@ routine-prompt.md          the prompt to paste into the Routines UI
 3. **Create the routine** — at https://claude.ai/code/routines → New routine →
    select this repo → add a **Schedule** trigger (e.g. weekly, Monday 06:00) →
    paste the prompt from `routine-prompt.md`.
+4. **Enable "Allow unrestricted branch pushes."** This is required, not
+   optional, for this routine. See "Why continuity requires pushing to main"
+   below — without it, every run "forgets" the previous week's snapshot.
 
 ## Run it locally first
 
@@ -53,10 +56,24 @@ you never have to touch code to add/remove keywords or competitors. Replace the
 placeholder coordinates with each location's exact latitude,longitude for the most
 accurate local pack.
 
-## Notes
+## Why continuity requires pushing to main
 
-- Routines push to `claude/`-prefixed branches by default, so reports land on a
-  branch and you review via PR. Flip "Allow unrestricted branch pushes" only if
-  you want it to commit straight to main.
-- Routines are stateless between runs; state persistence here is the snapshot
-  files in `data/snapshots/`.
+Each Routine firing starts from a **fresh clone of `main`** — it has no memory
+of previous runs beyond what's committed to `main` itself. State persistence
+here depends entirely on `data/snapshots/` being present on `main` at the
+start of the next run.
+
+By default, Routines push to a new `claude/`-prefixed branch every run instead
+of committing to `main`. If that branch is never merged, the branch (and that
+week's snapshot) is invisible to the next run — which clones `main`, finds
+`data/snapshots/` still empty, and logs "no prior snapshot" again. Repeat
+weekly, forever, with the tracker perpetually stuck in baseline mode.
+
+**Fix:** enable "Allow unrestricted branch pushes" on the routine so it
+commits `data/snapshots/*.json`, `data/latest-delta.json`, and the weekly
+report straight to `main`. That's what makes week-over-week deltas work.
+
+If you'd rather keep the PR-review workflow (branch per run + manual merge),
+that's fine too — just make sure every run's branch actually gets merged to
+`main` before the next scheduled firing, or you'll hit the same "no prior
+snapshot" issue.
