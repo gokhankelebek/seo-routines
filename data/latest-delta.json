@@ -1,5 +1,13 @@
 {
-  "date": "2026-08-31",
-  "baseline": true,
-  "changes": []
+  "date": "2026-09-28",
+  "baseline": false,
+  "changes": [
+    {
+      "location": "fremont",
+      "keyword": "late night food fremont street",
+      "from": 48,
+      "to": 47,
+      "direction": "up"
+    }
+  ]
 }
