@@ -1,5 +1,48 @@
 {
-  "date": "2026-08-31",
-  "baseline": true,
-  "changes": []
+  "date": "2026-10-12",
+  "baseline": false,
+  "changes": [
+    {
+      "location": "strip",
+      "keyword": "doner kebab las vegas",
+      "from": 1,
+      "to": null,
+      "direction": "dropped"
+    },
+    {
+      "location": "strip",
+      "keyword": "mediterranean restaurant las vegas strip",
+      "from": 1,
+      "to": 2,
+      "direction": "down"
+    },
+    {
+      "location": "strip",
+      "keyword": "shawarma near me",
+      "from": 1,
+      "to": null,
+      "direction": "dropped"
+    },
+    {
+      "location": "fremont",
+      "keyword": "mediterranean restaurant downtown las vegas",
+      "from": 1,
+      "to": null,
+      "direction": "dropped"
+    },
+    {
+      "location": "fremont",
+      "keyword": "shawarma fremont street",
+      "from": 1,
+      "to": null,
+      "direction": "dropped"
+    },
+    {
+      "location": "fremont",
+      "keyword": "late night food fremont street",
+      "from": 48,
+      "to": 49,
+      "direction": "down"
+    }
+  ]
 }
