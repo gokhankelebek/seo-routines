@@ -1,5 +1,20 @@
 {
-  "date": "2026-08-31",
-  "baseline": true,
-  "changes": []
+  "date": "2026-10-26",
+  "baseline": false,
+  "changes": [
+    {
+      "location": "fremont",
+      "keyword": "shawarma fremont street",
+      "from": 1,
+      "to": 2,
+      "direction": "down"
+    },
+    {
+      "location": "fremont",
+      "keyword": "late night food fremont street",
+      "from": 48,
+      "to": 3,
+      "direction": "up"
+    }
+  ]
 }
