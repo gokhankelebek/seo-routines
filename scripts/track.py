@@ -63,7 +63,7 @@ def query_maps(keyword, coordinate, language_code):
         },
         method="POST",
     )
-    with urllib.request.urlopen(req, timeout=60) as resp:
+    with urllib.request.urlopen(req, timeout=180) as resp:
         data = json.loads(resp.read().decode())
     tasks = data.get("tasks") or []
     if not tasks:
@@ -118,7 +118,7 @@ def build_snapshot(cfg):
                     "our_rank": our_rank,
                     "competitors": comps,
                 }
-            except (urllib.error.URLError, RuntimeError, ValueError) as e:
+            except (urllib.error.URLError, RuntimeError, ValueError, OSError) as e:
                 loc_block["keywords"][kw] = {"our_rank": None, "competitors": [], "error": str(e)}
                 snapshot["errors"].append(f"{loc['id']} / {kw}: {e}")
         snapshot["locations"][loc["id"]] = loc_block
