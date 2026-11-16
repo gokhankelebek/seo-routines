@@ -1,5 +1,318 @@
 {
-  "date": "2026-08-31",
-  "baseline": true,
-  "changes": []
+  "date": "2026-11-16",
+  "previous_date": "2026-08-31",
+  "baseline": false,
+  "changes": [
+    {
+      "location": "strip",
+      "keyword": "mediterranean restaurant las vegas strip",
+      "from": 1,
+      "to": 2,
+      "direction": "down"
+    },
+    {
+      "location": "fremont",
+      "keyword": "late night food fremont street",
+      "from": 48,
+      "to": 24,
+      "direction": "up"
+    }
+  ],
+  "competitor_changes": [
+    {
+      "location": "strip",
+      "keyword": "halal food las vegas strip",
+      "entered": [],
+      "dropped": [],
+      "moved": [
+        {
+          "name": "Dave's Hot Chicken",
+          "rank_from": 1,
+          "rank_to": 1,
+          "rating_from": 4.4,
+          "rating_to": 4.4,
+          "reviews_from": 936,
+          "reviews_to": 1106
+        }
+      ]
+    },
+    {
+      "location": "strip",
+      "keyword": "doner kebab las vegas",
+      "entered": [
+        {
+          "name": "Shawarma",
+          "rank": 2,
+          "rating": 3,
+          "reviews": 1
+        }
+      ],
+      "dropped": [],
+      "moved": []
+    },
+    {
+      "location": "strip",
+      "keyword": "mediterranean restaurant las vegas strip",
+      "entered": [
+        {
+          "name": "Carbone Riviera",
+          "rank": 1,
+          "rating": 4,
+          "reviews": 375
+        },
+        {
+          "name": "GIADA",
+          "rank": 3,
+          "rating": 4.2,
+          "reviews": 3852
+        },
+        {
+          "name": "Spago",
+          "rank": 4,
+          "rating": 4.2,
+          "reviews": 2434
+        }
+      ],
+      "dropped": [
+        {
+          "name": "Eiffel Tower Restaurant",
+          "rank": 2,
+          "rating": 4.6,
+          "reviews": 6493
+        },
+        {
+          "name": "Ramen-Ya (Katana-ya)",
+          "rank": 4,
+          "rating": 4.3,
+          "reviews": 2383
+        },
+        {
+          "name": "Le Cirque",
+          "rank": 6,
+          "rating": 4.6,
+          "reviews": 759
+        }
+      ],
+      "moved": [
+        {
+          "name": "Alexxa's",
+          "rank_from": 5,
+          "rank_to": 5,
+          "rating_from": 4.5,
+          "rating_to": 4.5,
+          "reviews_from": 11166,
+          "reviews_to": 12223
+        },
+        {
+          "name": "Battista's Hole in the Wall",
+          "rank_from": 3,
+          "rank_to": 6,
+          "rating_from": 4.5,
+          "rating_to": 4.5,
+          "reviews_from": 8403,
+          "reviews_to": 8615
+        }
+      ]
+    },
+    {
+      "location": "strip",
+      "keyword": "shawarma near me",
+      "entered": [
+        {
+          "name": "Shawarma",
+          "rank": 2,
+          "rating": 3,
+          "reviews": 1
+        }
+      ],
+      "dropped": [],
+      "moved": []
+    },
+    {
+      "location": "strip",
+      "keyword": "turkish food las vegas",
+      "entered": [
+        {
+          "name": "Shawarma",
+          "rank": 2,
+          "rating": 3,
+          "reviews": 1
+        }
+      ],
+      "dropped": [],
+      "moved": []
+    },
+    {
+      "location": "fremont",
+      "keyword": "doner near me",
+      "entered": [
+        {
+          "name": "Sultan’s Grill Las Vegas",
+          "rank": 3,
+          "rating": 4.2,
+          "reviews": 116
+        }
+      ],
+      "dropped": [
+        {
+          "name": "Market Street Café",
+          "rank": 2,
+          "rating": 4.2,
+          "reviews": 1905
+        },
+        {
+          "name": "The Meltdown",
+          "rank": 3,
+          "rating": 2.4,
+          "reviews": 10
+        },
+        {
+          "name": "American Coney Island Las Vegas",
+          "rank": 4,
+          "rating": 3.9,
+          "reviews": 1071
+        },
+        {
+          "name": "Saginaw's Delicatessen",
+          "rank": 6,
+          "rating": 3.9,
+          "reviews": 715
+        }
+      ],
+      "moved": [
+        {
+          "name": "Lanai Express at Fremont Casino",
+          "rank_from": 5,
+          "rank_to": 2,
+          "rating_from": 2.9,
+          "rating_to": 2.9,
+          "reviews_from": 271,
+          "reviews_to": 273
+        }
+      ]
+    },
+    {
+      "location": "fremont",
+      "keyword": "mediterranean restaurant downtown las vegas",
+      "entered": [
+        {
+          "name": "Daily Dose Cafe",
+          "rank": 3,
+          "rating": 4.8,
+          "reviews": 544
+        }
+      ],
+      "dropped": [],
+      "moved": [
+        {
+          "name": "Sultan’s Grill Las Vegas",
+          "rank_from": 2,
+          "rank_to": 2,
+          "rating_from": 4.2,
+          "rating_to": 4.2,
+          "reviews_from": 113,
+          "reviews_to": 116
+        }
+      ]
+    },
+    {
+      "location": "fremont",
+      "keyword": "shawarma fremont street",
+      "entered": [
+        {
+          "name": "Park On Fremont",
+          "rank": 3,
+          "rating": 4.4,
+          "reviews": 2310
+        }
+      ],
+      "dropped": [],
+      "moved": [
+        {
+          "name": "Sultan’s Grill Las Vegas",
+          "rank_from": 2,
+          "rank_to": 2,
+          "rating_from": 4.2,
+          "rating_to": 4.2,
+          "reviews_from": 113,
+          "reviews_to": 116
+        }
+      ]
+    },
+    {
+      "location": "fremont",
+      "keyword": "late night food fremont street",
+      "entered": [
+        {
+          "name": "Chicago Brewing Co at Four Queens",
+          "rank": 5,
+          "rating": 4.2,
+          "reviews": 602
+        }
+      ],
+      "dropped": [
+        {
+          "name": "Street Tacos LV",
+          "rank": 5,
+          "rating": 4.4,
+          "reviews": 85
+        }
+      ],
+      "moved": [
+        {
+          "name": "Fremont Food Hall",
+          "rank_from": 1,
+          "rank_to": 1,
+          "rating_from": 4.4,
+          "rating_to": 4.4,
+          "reviews_from": 34,
+          "reviews_to": 35
+        },
+        {
+          "name": "Tacos & Miches Fremont",
+          "rank_from": 4,
+          "rank_to": 2,
+          "rating_from": 4.2,
+          "rating_to": 4.2,
+          "reviews_from": 1257,
+          "reviews_to": 1282
+        },
+        {
+          "name": "American Coney Island Las Vegas",
+          "rank_from": 2,
+          "rank_to": 3,
+          "rating_from": 3.9,
+          "rating_to": 3.9,
+          "reviews_from": 1071,
+          "reviews_to": 1074
+        },
+        {
+          "name": "LONGBAR",
+          "rank_from": 3,
+          "rank_to": 4,
+          "rating_from": 4.4,
+          "rating_to": 4.4,
+          "reviews_from": 31,
+          "reviews_to": 31
+        }
+      ]
+    },
+    {
+      "location": "fremont",
+      "keyword": "turkish food downtown las vegas",
+      "entered": [],
+      "dropped": [],
+      "moved": [
+        {
+          "name": "Sultan’s Grill Las Vegas",
+          "rank_from": 2,
+          "rank_to": 2,
+          "rating_from": 4.2,
+          "rating_to": 4.2,
+          "reviews_from": 113,
+          "reviews_to": 116
+        }
+      ]
+    }
+  ]
 }
