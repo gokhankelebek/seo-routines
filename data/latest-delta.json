@@ -1,5 +1,134 @@
 {
-  "date": "2026-08-31",
-  "baseline": true,
-  "changes": []
+  "date": "2026-11-23",
+  "previous_date": "2026-11-16",
+  "baseline": false,
+  "changes": [],
+  "competitor_changes": [
+    {
+      "location": "strip",
+      "keyword": "halal food las vegas strip",
+      "entered": [],
+      "dropped": [],
+      "moved": [
+        {
+          "name": "Dave's Hot Chicken",
+          "rank_from": 1,
+          "rank_to": 1,
+          "rating_from": 4.4,
+          "rating_to": 4.4,
+          "reviews_from": 1106,
+          "reviews_to": 1110
+        }
+      ]
+    },
+    {
+      "location": "strip",
+      "keyword": "mediterranean restaurant las vegas strip",
+      "entered": [
+        {
+          "name": "Eiffel Tower Restaurant",
+          "rank": 3,
+          "rating": 4.6,
+          "reviews": 6584
+        },
+        {
+          "name": "Ramen-Ya (Katana-ya)",
+          "rank": 5,
+          "rating": 4.3,
+          "reviews": 2425
+        }
+      ],
+      "dropped": [
+        {
+          "name": "GIADA",
+          "rank": 3,
+          "rating": 4.2,
+          "reviews": 3852
+        },
+        {
+          "name": "Spago",
+          "rank": 4,
+          "rating": 4.2,
+          "reviews": 2434
+        }
+      ],
+      "moved": [
+        {
+          "name": "Carbone Riviera",
+          "rank_from": 1,
+          "rank_to": 1,
+          "rating_from": 4,
+          "rating_to": 4,
+          "reviews_from": 375,
+          "reviews_to": 379
+        },
+        {
+          "name": "Battista's Hole in the Wall",
+          "rank_from": 6,
+          "rank_to": 4,
+          "rating_from": 4.5,
+          "rating_to": 4.5,
+          "reviews_from": 8615,
+          "reviews_to": 8633
+        },
+        {
+          "name": "Alexxa's",
+          "rank_from": 5,
+          "rank_to": 6,
+          "rating_from": 4.5,
+          "rating_to": 4.5,
+          "reviews_from": 12223,
+          "reviews_to": 12314
+        }
+      ]
+    },
+    {
+      "location": "fremont",
+      "keyword": "mediterranean restaurant downtown las vegas",
+      "entered": [],
+      "dropped": [],
+      "moved": [
+        {
+          "name": "Daily Dose Cafe",
+          "rank_from": 3,
+          "rank_to": 3,
+          "rating_from": 4.8,
+          "rating_to": 4.8,
+          "reviews_from": 544,
+          "reviews_to": 551
+        }
+      ]
+    },
+    {
+      "location": "fremont",
+      "keyword": "shawarma fremont street",
+      "entered": [],
+      "dropped": [
+        {
+          "name": "Park On Fremont",
+          "rank": 3,
+          "rating": 4.4,
+          "reviews": 2310
+        }
+      ],
+      "moved": []
+    },
+    {
+      "location": "fremont",
+      "keyword": "late night food fremont street",
+      "entered": [],
+      "dropped": [],
+      "moved": [
+        {
+          "name": "Tacos & Miches Fremont",
+          "rank_from": 2,
+          "rank_to": 2,
+          "rating_from": 4.2,
+          "rating_to": 4.2,
+          "reviews_from": 1282,
+          "reviews_to": 1283
+        }
+      ]
+    }
+  ]
 }

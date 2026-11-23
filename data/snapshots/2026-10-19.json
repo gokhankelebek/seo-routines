@@ -1,0 +1,181 @@
+{
+  "date": "2026-10-19",
+  "locations": {
+    "strip": {
+      "name": "Istanbul Mediterranean - Strip",
+      "keywords": {
+        "halal food las vegas strip": {
+          "our_rank": 2,
+          "competitors": [
+            {
+              "name": "Dave's Hot Chicken",
+              "rank": 1,
+              "rating": 4.4,
+              "reviews": 1102
+            }
+          ]
+        },
+        "doner kebab las vegas": {
+          "our_rank": 1,
+          "competitors": []
+        },
+        "mediterranean restaurant las vegas strip": {
+          "our_rank": 1,
+          "competitors": [
+            {
+              "name": "Eiffel Tower Restaurant",
+              "rank": 2,
+              "rating": 4.6,
+              "reviews": 6552
+            },
+            {
+              "name": "Battista's Hole in the Wall",
+              "rank": 3,
+              "rating": 4.5,
+              "reviews": 8545
+            },
+            {
+              "name": "Carbone Riviera",
+              "rank": 4,
+              "rating": 4,
+              "reviews": 345
+            },
+            {
+              "name": "Ramen-Ya (Katana-ya)",
+              "rank": 5,
+              "rating": 4.3,
+              "reviews": 2407
+            },
+            {
+              "name": "Alexxa's",
+              "rank": 6,
+              "rating": 4.5,
+              "reviews": 11861
+            }
+          ]
+        },
+        "shawarma near me": {
+          "our_rank": 1,
+          "competitors": [
+            {
+              "name": "Shawarma",
+              "rank": 2,
+              "rating": null,
+              "reviews": null
+            }
+          ]
+        },
+        "turkish food las vegas": {
+          "our_rank": 1,
+          "competitors": [
+            {
+              "name": "Shawarma",
+              "rank": 2,
+              "rating": null,
+              "reviews": null
+            }
+          ]
+        },
+        "gyro las vegas strip": {
+          "our_rank": 1,
+          "competitors": []
+        }
+      }
+    },
+    "fremont": {
+      "name": "Istanbul Mediterranean - Fremont",
+      "keywords": {
+        "halal food fremont street": {
+          "our_rank": 1,
+          "competitors": []
+        },
+        "doner near me": {
+          "our_rank": 1,
+          "competitors": [
+            {
+              "name": "Lanai Express at Fremont Casino",
+              "rank": 2,
+              "rating": 2.9,
+              "reviews": 273
+            },
+            {
+              "name": "Sultan’s Grill Las Vegas",
+              "rank": 3,
+              "rating": 4.2,
+              "reviews": 115
+            }
+          ]
+        },
+        "mediterranean restaurant downtown las vegas": {
+          "our_rank": 1,
+          "competitors": [
+            {
+              "name": "Sultan’s Grill Las Vegas",
+              "rank": 2,
+              "rating": 4.2,
+              "reviews": 115
+            }
+          ]
+        },
+        "shawarma fremont street": {
+          "our_rank": 2,
+          "competitors": [
+            {
+              "name": "Sultan’s Grill Las Vegas",
+              "rank": 3,
+              "rating": 4.2,
+              "reviews": 115
+            }
+          ]
+        },
+        "late night food fremont street": {
+          "our_rank": 3,
+          "competitors": [
+            {
+              "name": "Dirt Dog - Fremont",
+              "rank": 1,
+              "rating": 4.9,
+              "reviews": 3410
+            },
+            {
+              "name": "Hammered Harry's Las Vegas",
+              "rank": 2,
+              "rating": 4.7,
+              "reviews": 1846
+            },
+            {
+              "name": "Park On Fremont",
+              "rank": 4,
+              "rating": 4.4,
+              "reviews": 2301
+            },
+            {
+              "name": "Fremont Food Hall",
+              "rank": 5,
+              "rating": 4.4,
+              "reviews": 35
+            },
+            {
+              "name": "8 East",
+              "rank": 6,
+              "rating": 4.7,
+              "reviews": 1080
+            }
+          ]
+        },
+        "turkish food downtown las vegas": {
+          "our_rank": 1,
+          "competitors": [
+            {
+              "name": "Sultan’s Grill Las Vegas",
+              "rank": 2,
+              "rating": 4.2,
+              "reviews": 115
+            }
+          ]
+        }
+      }
+    }
+  },
+  "errors": []
+}
